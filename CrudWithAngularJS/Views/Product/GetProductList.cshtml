@@ -1,0 +1,148 @@
+﻿@model IEnumerable<CrudWithAngularJS.Models.Product>
+
+@using CrudWithAngularJS.Helper
+@{
+    ViewBag.Title = "GetProductList";
+}
+
+<h2>GetProductList</h2>
+
+<p>
+    <a href="@Url.Action("NewProduct")" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-striped" ng-controller="ProductController">
+    <thead class="thead-dark bg-secondary" ng-init='initList(@Html.Json(Model))'>
+        <tr class="p-4">
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <text>True</text>
+                    }
+                    else
+                    {
+                        <text>False</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { id = item.Id })" class="btn btn-primary">Edit</a>
+
+                    <a href="@Url.Action("Delete","Product", new {id = item.Id })" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Pagination Section Start -->
+<div class="text-center mb-2">
+    Page @ViewBag.CurrentPage of @ViewBag.TotalPages
+</div>
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("GetProductList", new { page = 1 })" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                    <span class="sr-only">First</span>
+                </a>
+            </li>
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("GetProductList", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            @if (ViewBag.TotalPages > 1)
+            {
+                @* Calculate start and end of range *@
+                var start = Math.Max(1, ViewBag.CurrentPage - 3);
+                var end = Math.Min(ViewBag.TotalPages, ViewBag.CurrentPage + 3);
+
+                @* Show ellipsis if not on the first page *@
+                if (start > 1)
+                {
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                }
+
+                @* Display page numbers within the range *@
+                for (int i = start; i <= end; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("GetProductList", new { page = i })">@i</a>
+                    </li>
+                }
+
+                @* Show ellipsis if not on the last page *@
+                if (end < ViewBag.TotalPages)
+                {
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                }
+            }
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("GetProductList", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("GetProductList", new { page = ViewBag.TotalPages })" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                    <span class="sr-only">Last</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

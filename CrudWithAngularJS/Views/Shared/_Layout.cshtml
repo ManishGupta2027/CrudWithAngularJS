@@ -1,13 +1,24 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*<link href="~/Asset/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Asset/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>*@
+    <link href="~/Assets/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Assets/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="~/Assets/my-app.js"></script>
+    <script src="~/Assets/js/Controller/ProductCtr.js"></script>
+    <script src="~/Assets/js/Directive/decimal-only.js"></script>
+
+
 </head>
-<body>
+<body ng-controller="ProductController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

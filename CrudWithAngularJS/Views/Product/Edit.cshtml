@@ -1,0 +1,68 @@
+﻿@model  CrudWithAngularJS.Models.Product
+
+@using CrudWithAngularJS.Helper
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<p>
+    <a href="@Url.Action("GetProductList")" class="btn btn-primary">Back to List</a>
+</p>
+
+
+<div class="container-fluid min-vh-100 w-50 justify-content-center" ng-controller="ProductController" ng-init='initEdit(@Html.Json(Model))'>
+    <form name="productForm" class="mb-3" ng-submit="updateForm()" novalidate>
+        <div class="mb-3">
+            <label>Title</label>
+            <input type="text" class="form-control" name="title" ng-model="product.title" placeholder="Title" required>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.title.$dirty && productForm.title.$error.required">Title is required</span>
+        </div>
+        <div class="mb-3">
+            <label>Stock Code</label>
+            <input type="text" class="form-control" name="stockcode" ng-model="product.stockCode" placeholder="Stock Code" required>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.stockcode.$dirty && productForm.stockcode.$error.required">Stock Code is required</span>
+        </div>
+        <div class="mb-3">
+            <label>Price</label>
+            <input type="text" class="form-control" name="price" ng-model="product.price" placeholder="Price" required decimal-only>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.price.$dirty && productForm.price.$error.required">Price is required</span>
+        </div>
+        <div class="dropdown mb-3">
+            <label>Select Any Category</label>
+            <select class="form-select" name="category" ng-model="product.category" required>
+                <option value="">Select Category</option>
+                <option value="Phone">Phone</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Foods">Foods</option>
+            </select>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.category.$dirty && productForm.category.$error.required">Category is required</span>
+        </div>
+        <div class="mb-3">
+            <label>Gender :</label>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" ng-model="product.gender" required>
+                <label for="Male">Male</label>
+            </div>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" ng-model="product.gender">
+                <label for="Female">Female</label>
+            </div>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" ng-model="product.gender">
+                <label for="Other">Other</label>
+            </div>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.gender.$dirty && productForm.gender.$error.required">Gender is required</span>
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label class="me-3">IsActive:</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="isActiveSwitch" ng-model="product.isActive">
+                <label class="form-check-label" for="isActiveSwitch"></label>
+            </div>
+            <span id="isActiveValue" class="ms-2"></span>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.isActive.$dirty && productForm.isActive.$error.required">Please check IsActive</span>
+        </div>
+        <button class="d-grid btn btn-primary w-50 mx-auto" type="submit">Submit</button>
+    </form>
+</div>

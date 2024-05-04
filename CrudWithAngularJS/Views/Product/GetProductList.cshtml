@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CrudWithAngularJS.Models.Product>
+﻿@*@model IEnumerable<CrudWithAngularJS.Models.Product>
 
 @using CrudWithAngularJS.Helper
 @{
@@ -83,8 +83,51 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@
 
+
+@model IEnumerable<CrudWithAngularJS.Models.Product>
+
+@using CrudWithAngularJS.Helper
+@{
+    ViewBag.Title = "GetProductList";
+}
+
+<h2>GetProductList</h2>
+
+<p>
+    <a href="@Url.Action("NewProduct")" class="btn btn-primary">Create New</a>
+</p>
+<div ng-init='initList(@Html.Json(Model))'>
+    <h4>Student Records</h4>
+    <table cellpadding="12" class="table table-bordered table-hover">
+        <tr style="background-color:darkblue;color:white">
+            <th>Id</th>
+            <th>Title</th>
+            <th>StockCode</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Gender</th>
+            <th>CreatedBy</th>
+        </tr>
+        <tr ng-repeat="item in productList">
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.stockCode}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.gender}}</td>
+            <td>{{ item.isActive}}</td>
+            <td>{{item.createdBy}}</td>
+            <td>
+                <a ng-href="/Product/Edit/{{ item.id }}" class="btn btn-primary">Edit</a>
+                <a ng-href="/Product/Delete/{{ item.id }}" class="btn btn-danger">Delete</a>
+            </td>
+
+
+        </tr>
+    </table>
+</div>
 
 <!-- Pagination Section Start -->
 <div class="text-center mb-2">

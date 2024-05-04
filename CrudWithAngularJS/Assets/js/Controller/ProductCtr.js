@@ -38,7 +38,7 @@
     };
 
     $scope.initList = function (model) {
-        $scope.product = model;
+        $scope.productList = model;
     }
 
     $scope.initEdit = function (model) {

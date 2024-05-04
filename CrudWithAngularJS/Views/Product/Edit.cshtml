@@ -13,6 +13,7 @@
 
 <div class="container-fluid min-vh-100 w-50 justify-content-center" ng-controller="ProductController" ng-init='initEdit(@Html.Json(Model))'>
     <form name="productForm" class="mb-3" ng-submit="updateForm()" novalidate>
+       
         <div class="mb-3">
             <label>Title</label>
             <input type="text" class="form-control" name="title" ng-model="product.title" placeholder="Title" required>

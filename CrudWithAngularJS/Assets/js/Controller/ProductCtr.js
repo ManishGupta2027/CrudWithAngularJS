@@ -48,12 +48,13 @@
     $scope.updateForm = function () {
         if ($scope.productForm.$valid) {
             var data = {
+                id: $scope.product.id,
                 title: $scope.product.title,
                 stockCode: $scope.product.stockCode,
                 price: $scope.product.price,
                 category: $scope.product.category,
                 gender: $scope.product.gender,
-                isActive: $scope.product.isActive
+                isActive: $scope.product.isActive,
             };
 
             // Make POST request using Axios

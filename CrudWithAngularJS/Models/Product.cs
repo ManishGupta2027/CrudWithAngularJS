@@ -19,7 +19,7 @@ namespace CrudWithAngularJS.Models
 		public int CurrentPage { get; set; }
 		public int PageSize { get; set; }
 		public int TotalRecords { get; set; }
-		public DateTime? CreatedBy { get; set; }
+		public DateTime? Created { get; set; }
 
 	}
 }

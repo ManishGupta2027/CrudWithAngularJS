@@ -76,13 +76,6 @@ namespace CrudWithAngularJS.Data
 			return ((ISingleResult<procGetProductDetail_20240420Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetProductList_20240427")]
-		public ISingleResult<procGetProductList_20240427Result> procGetProductList_20240427([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentPage, pageSize);
-			return ((ISingleResult<procGetProductList_20240427Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procSaveProduct_19042024")]
 		public ISingleResult<procSaveProduct_19042024Result> procSaveProduct_19042024([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(100)")] string stockCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(10,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="NVarChar(100)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(50)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="Bit")] System.Nullable<bool> isActive)
 		{
@@ -90,11 +83,18 @@ namespace CrudWithAngularJS.Data
 			return ((ISingleResult<procSaveProduct_19042024Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertProduct_20240427")]
-		public ISingleResult<procUpsertProduct_20240427Result> procUpsertProduct_20240427([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(100)")] string stockCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(10,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="NVarChar(100)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(50)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="Bit")] System.Nullable<bool> isActive)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetProductList_20240504")]
+		public ISingleResult<procGetProductList_20240504Result> procGetProductList_20240504([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentPage, pageSize);
+			return ((ISingleResult<procGetProductList_20240504Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertProduct_20240504")]
+		public ISingleResult<procUpsertProduct_20240504Result> procUpsertProduct_20240504([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(100)")] string stockCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(10,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="NVarChar(100)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(50)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="Bit")] System.Nullable<bool> isActive)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, title, stockCode, price, category, gender, isActive);
-			return ((ISingleResult<procUpsertProduct_20240427Result>)(result.ReturnValue));
+			return ((ISingleResult<procUpsertProduct_20240504Result>)(result.ReturnValue));
 		}
 	}
 	
@@ -258,7 +258,33 @@ namespace CrudWithAngularJS.Data
 		}
 	}
 	
-	public partial class procGetProductList_20240427Result
+	public partial class procSaveProduct_19042024Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		public procSaveProduct_19042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetProductList_20240504Result
 	{
 		
 		private string _Title;
@@ -277,9 +303,9 @@ namespace CrudWithAngularJS.Data
 		
 		private System.Nullable<int> _TotalRecords;
 		
-		private System.Nullable<System.DateTime> _CreatedBy;
+		private System.Nullable<System.DateTime> _Created;
 		
-		public procGetProductList_20240427Result()
+		public procGetProductList_20240504Result()
 		{
 		}
 		
@@ -411,57 +437,31 @@ namespace CrudWithAngularJS.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedBy
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
 		{
 			get
 			{
-				return this._CreatedBy;
+				return this._Created;
 			}
 			set
 			{
-				if ((this._CreatedBy != value))
+				if ((this._Created != value))
 				{
-					this._CreatedBy = value;
+					this._Created = value;
 				}
 			}
 		}
 	}
 	
-	public partial class procSaveProduct_19042024Result
-	{
-		
-		private System.Nullable<bool> _isValid;
-		
-		public procSaveProduct_19042024Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
-		public System.Nullable<bool> isValid
-		{
-			get
-			{
-				return this._isValid;
-			}
-			set
-			{
-				if ((this._isValid != value))
-				{
-					this._isValid = value;
-				}
-			}
-		}
-	}
-	
-	public partial class procUpsertProduct_20240427Result
+	public partial class procUpsertProduct_20240504Result
 	{
 		
 		private System.Nullable<bool> _isValid;
 		
 		private string _Message;
 		
-		public procUpsertProduct_20240427Result()
+		public procUpsertProduct_20240504Result()
 		{
 		}
 		

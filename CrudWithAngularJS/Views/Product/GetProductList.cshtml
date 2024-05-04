@@ -108,7 +108,8 @@
             <th>Price</th>
             <th>Category</th>
             <th>Gender</th>
-            <th>CreatedBy</th>
+            <th>IsActive</th>
+            <th>Created</th>
         </tr>
         <tr ng-repeat="item in productList">
             <td>{{item.id}}</td>
@@ -118,7 +119,7 @@
             <td>{{item.category}}</td>
             <td>{{item.gender}}</td>
             <td>{{ item.isActive}}</td>
-            <td>{{item.createdBy}}</td>
+            <td>{{item.created}}</td>
             <td>
                 <a ng-href="/Product/Edit/{{ item.id }}" class="btn btn-primary">Edit</a>
                 <a ng-href="/Product/Delete/{{ item.id }}" class="btn btn-danger">Delete</a>

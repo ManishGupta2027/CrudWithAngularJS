@@ -19,7 +19,7 @@ namespace CrudWithAngularJS.Repository
 
 
 
-		public List<Product> GetProductList(int currentPage, int pageSize)
+		public List<Product> GetProductList(int currentPage, int pageSize,string search)
 		{
 			var dbResp = _dataFactoryDBDataContext.procGetProductList_20240504(currentPage, pageSize);
 			var Product = (from o in dbResp

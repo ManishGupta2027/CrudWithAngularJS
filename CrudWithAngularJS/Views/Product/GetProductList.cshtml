@@ -1,89 +1,89 @@
 ﻿@*@model IEnumerable<CrudWithAngularJS.Models.Product>
 
-@using CrudWithAngularJS.Helper
-@{
-    ViewBag.Title = "GetProductList";
-}
+    @using CrudWithAngularJS.Helper
+    @{
+        ViewBag.Title = "GetProductList";
+    }
 
-<h2>GetProductList</h2>
+    <h2>GetProductList</h2>
 
-<p>
-    <a href="@Url.Action("NewProduct")" class="btn btn-primary">Create New</a>
-</p>
-<table class="table table-striped" ng-controller="ProductController">
-    <thead class="thead-dark bg-secondary" ng-init='initList(@Html.Json(Model))'>
-        <tr class="p-4">
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StockCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StockCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
-                </td>
-                <td>
-                    @if (item.IsActive)
-                    {
-                        <text>True</text>
-                    }
-                    else
-                    {
-                        <text>False</text>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                </td>
-                <td>
-                    <a href="@Url.Action("Edit", "Product", new { id = item.Id })" class="btn btn-primary">Edit</a>
-
-                    <a href="@Url.Action("Delete","Product", new {id = item.Id })" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
-                </td>
+    <p>
+        <a href="@Url.Action("NewProduct")" class="btn btn-primary">Create New</a>
+    </p>
+    <table class="table table-striped" ng-controller="ProductController">
+        <thead class="thead-dark bg-secondary" ng-init='initList(@Html.Json(Model))'>
+            <tr class="p-4">
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StockCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>*@
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StockCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @if (item.IsActive)
+                        {
+                            <text>True</text>
+                        }
+                        else
+                        {
+                            <text>False</text>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Product", new { id = item.Id })" class="btn btn-primary">Edit</a>
+
+                        <a href="@Url.Action("Delete","Product", new {id = item.Id })" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
 
 
 @model IEnumerable<CrudWithAngularJS.Models.Product>
@@ -98,6 +98,20 @@
 <p>
     <a href="@Url.Action("NewProduct")" class="btn btn-primary">Create New</a>
 </p>
+
+<!-- Search Section Start -->
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="search1" placeholder="Search...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="search()" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search Section End -->
+
 <div ng-init='initList(@Html.Json(Model))'>
     <h4>Student Records</h4>
     <table cellpadding="12" class="table table-bordered table-hover">

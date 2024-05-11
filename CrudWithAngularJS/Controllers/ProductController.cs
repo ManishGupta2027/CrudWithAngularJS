@@ -25,13 +25,13 @@ namespace CrudWithAngularJS.Controllers
 		//}
 
 
-		public ActionResult GetProductList(int? page)
+		public ActionResult GetProductList(int? page,string search)
 		{
 			int currentPage = (page ?? 1); // If no page number is specified, default to the first page
 			int pageSize = 5; // Number of items per page
 
 			// Retrieve the list of users from your repository
-			var products = _productService.GetProductList(currentPage, pageSize);
+			var products = _productService.GetProductList(currentPage, pageSize, search);
 
 			// Get the total number of users
 			int totalProductsCount = products.FirstOrDefault().TotalRecords;

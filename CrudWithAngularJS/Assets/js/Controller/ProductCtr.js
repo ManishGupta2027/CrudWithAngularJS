@@ -1,6 +1,8 @@
 ﻿myApp.controller('ProductController', ['$scope', function ($scope) {
     $scope.product = {};
 
+    $scope.search1 = '';
+
     $scope.submitForm = function () {
         if ($scope.productForm.$valid) {
             var data = {
@@ -39,6 +41,18 @@
 
     $scope.initList = function (model) {
         $scope.productList = model;
+    }
+
+    $scope.search = function () {
+        // Make POST request using Axios
+        axios.get('/Product/GetProductList', {
+            params: {
+                search: $scope.search1
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 
     $scope.initEdit = function (model) {
@@ -80,6 +94,7 @@
             // Form is invalid, display error messages
             $scope.productForm.$submitted = true;
         }
+
     };
 
 }]);

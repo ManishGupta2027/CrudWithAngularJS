@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRUD" Class="DataFactoryDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=MANISH\MSSQLSERVER2023;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.procDeleteProduct_15042024" Method="procDeleteProduct_15042024">
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <ElementType Name="procDeleteProduct_15042024Result">
@@ -55,6 +54,22 @@
     <ElementType Name="procUpsertProduct_20240504Result">
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Message" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetProductList_20240511" Method="procGetProductList_20240511">
+    <Parameter Name="CurrentPage" Parameter="currentPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Search" Parameter="search" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="procGetProductList_20240511Result">
+      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalRecords" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

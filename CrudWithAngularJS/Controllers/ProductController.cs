@@ -28,7 +28,7 @@ namespace CrudWithAngularJS.Controllers
 		{
 			var products = new List<Product>();
 			int currentPage = (page ?? 1); // If no page number is specified, default to the first page
-			int pageSize = 5; // Number of items per page
+			int pageSize = 2; // Number of items per page
 
 			// Retrieve the list of users from your repository
 			 products = _productService.GetProductList(currentPage, pageSize, search);
@@ -46,6 +46,14 @@ namespace CrudWithAngularJS.Controllers
 			ViewBag.TotalPages = totalPages;
 			ViewBag.CurrentPage = currentPage;
 
+			// Calculate the range of products displayed on the current page
+			int startRecord = (currentPage - 1) * pageSize + 1;
+			int endRecord = Math.Min(currentPage * pageSize, (int)totalProductsCount);
+
+			ViewBag.StartRecord = startRecord;
+			ViewBag.EndRecord = endRecord;
+
+			ViewBag.TotalRecords = totalProductsCount;
 			return View(products);
 		}
 		//public ActionResult GetProductsear(int? page, string search)

@@ -127,10 +127,10 @@
 }
 
 @if (!Model.Any())
-{ 
-<div>
-    No products available
-</div>
+{
+    <div>
+        No products available
+    </div>
 }
 else
 {
@@ -166,8 +166,9 @@ else
     </div>
 
     <!-- Pagination Section Start -->
+<div class="d-flex justify-content-between align-items-center">
     <div class="text-center mb-2">
-        Page @ViewBag.CurrentPage of @ViewBag.TotalPages
+        @ViewBag.StartRecord to @ViewBag.EndRecord of @ViewBag.TotalRecords
     </div>
     <div class="d-flex justify-content-center">
         <nav aria-label="Page navigation">
@@ -225,6 +226,8 @@ else
             </ul>
         </nav>
     </div>
+</div>
+
 
 }
 

@@ -1,6 +1,8 @@
 ﻿myApp.controller('ProductController', ['$scope', function ($scope) {
     $scope.product = {};
 
+    //$scope.search1 = '';
+
     $scope.submitForm = function () {
         if ($scope.productForm.$valid) {
             var data = {
@@ -40,6 +42,28 @@
     $scope.initList = function (model) {
         $scope.productList = model;
     }
+    ///we not use searching in js  so dont use js 
+    //$scope.search = function () {
+    //    window.location.reload(); // Reload the page
+    //    // Make POST request using Axios
+    //    axios.get('/Product/GetProductsear', {
+    //        params: {
+    //            search: $scope.search1
+    //        },
+    //        headers: {
+    //            'Content-Type': 'application/json'
+    //        }
+    //    });
+    //    //    .then(function (response) {
+    //    //    // Handle response data as needed
+    //    //    console.log(response.data);
+    //    //    $scope.productList = response.data;
+    //    //})
+    //    //    .catch(function (error) {
+    //    //        // Handle errors
+    //    //        console.error(error);
+    //    //    });;
+    //}
 
     $scope.initEdit = function (model) {
         $scope.product = model;
@@ -80,6 +104,7 @@
             // Form is invalid, display error messages
             $scope.productForm.$submitted = true;
         }
+
     };
 
 }]);

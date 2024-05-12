@@ -15,9 +15,9 @@ namespace CrudWithAngularJS.Service
 			_productRepository = productRepository;
 		}
 
-		public List<Product> GetProductList(int currentPage, int pageSize)
+		public List<Product> GetProductList(int currentPage, int pageSize, string search)
 		{
-			var res = _productRepository.GetProductList(currentPage, pageSize);
+			var res = _productRepository.GetProductList(currentPage, pageSize, search);
 			return res;
 		}
 

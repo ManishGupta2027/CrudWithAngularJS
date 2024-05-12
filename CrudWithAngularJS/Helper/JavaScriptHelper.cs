@@ -25,6 +25,21 @@ namespace CrudWithAngularJS.Helper
 
 			return MvcHtmlString.Create(JsonConvert.SerializeObject(obj, settings));
 		}
+		// Method to convert a model to JSON string with camelCase property names
+		public static string ConvertToJson(object model)
+		{
+			// Configure JsonSerializerSettings to use camelCase for property names
+			var settings = new JsonSerializerSettings
+			{
+				ContractResolver = new CamelCasePropertyNamesContractResolver()
+			};
+
+			// Serialize the model object to JSON string with camelCase property names
+			string json = JsonConvert.SerializeObject(model, settings);
+
+			return json;
+		}
 
 	}
+	
 }

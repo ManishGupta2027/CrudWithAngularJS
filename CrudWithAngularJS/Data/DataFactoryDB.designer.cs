@@ -96,6 +96,13 @@ namespace CrudWithAngularJS.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, title, stockCode, price, category, gender, isActive);
 			return ((ISingleResult<procUpsertProduct_20240504Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetProductList_20240511")]
+		public ISingleResult<procGetProductList_20240511Result> procGetProductList_20240511([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Search", DbType="NVarChar(100)")] string search)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentPage, pageSize, search);
+			return ((ISingleResult<procGetProductList_20240511Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procDeleteProduct_15042024Result
@@ -493,6 +500,176 @@ namespace CrudWithAngularJS.Data
 				if ((this._Message != value))
 				{
 					this._Message = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetProductList_20240511Result
+	{
+		
+		private string _Title;
+		
+		private string _StockCode;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private string _Category;
+		
+		private int _id;
+		
+		private string _Gender;
+		
+		private System.Nullable<bool> _IsActive;
+		
+		private System.Nullable<int> _TotalRecords;
+		
+		private System.Nullable<System.DateTime> _Created;
+		
+		public procGetProductList_20240511Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(100)")]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockCode", DbType="VarChar(50)")]
+		public string StockCode
+		{
+			get
+			{
+				return this._StockCode;
+			}
+			set
+			{
+				if ((this._StockCode != value))
+				{
+					this._StockCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(100)")]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this._Category = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(50)")]
+		public string Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit")]
+		public System.Nullable<bool> IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalRecords", DbType="Int")]
+		public System.Nullable<int> TotalRecords
+		{
+			get
+			{
+				return this._TotalRecords;
+			}
+			set
+			{
+				if ((this._TotalRecords != value))
+				{
+					this._TotalRecords = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this._Created = value;
 				}
 			}
 		}

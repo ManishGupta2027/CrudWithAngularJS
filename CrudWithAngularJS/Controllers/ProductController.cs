@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Web.Mvc;
+using CrudWithAngularJS.Helper;
 using CrudWithAngularJS.Models;
 using CrudWithAngularJS.Service;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace CrudWithAngularJS.Controllers
 {
@@ -55,6 +60,58 @@ namespace CrudWithAngularJS.Controllers
 
 			ViewBag.TotalRecords = totalProductsCount;
 			return View(products);
+		}
+		public JsonResult GetProductList1(int? page, string search)
+		{
+			var products = new List<Product>();
+			int currentPage = (page ?? 1); // If no page number is specified, default to the first page
+			int pageSize = 2; // Number of items per page
+
+			// Retrieve the list of users from your repository
+			products = _productService.GetProductList(currentPage, pageSize, search);
+			if (!products.Any())
+			{
+				return  Json(products, JsonRequestBehavior.AllowGet);
+			}
+			// Get the total number of users
+			int? totalProductsCount = products.FirstOrDefault()?.TotalRecords;
+
+			// Calculate the total number of pages
+			int totalPages = (int)Math.Ceiling((double)totalProductsCount / pageSize);
+
+			// Pass necessary pagination information to the view
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = currentPage;
+
+			// Calculate the range of products displayed on the current page
+			int startRecord = (currentPage - 1) * pageSize + 1;
+			int endRecord = Math.Min(currentPage * pageSize, (int)totalProductsCount);
+
+			ViewBag.StartRecord = startRecord;
+			ViewBag.EndRecord = endRecord;
+
+			ViewBag.TotalRecords = totalProductsCount;
+			var res =Json(products, JsonRequestBehavior.AllowGet);
+			var res11 = JsonConvert.SerializeObject(products);
+			// Define custom JsonSerializerSettings if needed
+			var settings = new JsonSerializerSettings
+			{
+				// Customize settings if needed, e.g., formatting, converters, etc.
+				Formatting = Formatting.Indented
+			};
+			var settingws = new JsonSerializerSettings
+			{
+				ContractResolver = new CamelCasePropertyNamesContractResolver(),
+				Converters = new JsonConverter[]
+				{
+					new StringEnumConverter(),
+				},
+				StringEscapeHandling = StringEscapeHandling.EscapeHtml
+			};
+			var t6 = JsonConvert.SerializeObject(products, settingws);
+			var res2 = JsonConvert.DeserializeObject<List<Product>>(res11, settings);
+
+			return Json(t6, JsonRequestBehavior.AllowGet);
 		}
 		//public ActionResult GetProductsear(int? page, string search)
 		//{
